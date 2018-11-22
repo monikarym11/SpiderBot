@@ -35,7 +35,8 @@ class SpiderMoves():
             self.x.move(1)
             self.y.move(-1)
             self.x.move(1)
-    def move_round(self):
+        self.calibrate()
+   # def move_round(self):
 
 def move(self):        
         #for angle in self.angles:
@@ -50,30 +51,68 @@ class Pair():
     def __init__(self):
         self.angle = 0
         #self.angles = list(range(-45,45))+list(range(45,-45,-1))
-        self.angles = [-45, 0, 45]
+        self.mode = [1, -1, -1, 1, 1]
+        self.last = 0
         self.addr = 0
-        self.lleg = Leg()
-        self.rleg = Leg()    
+        self.lleg = LLeg()
+        self.rleg = RLeg()    
     def calibrate(self):
         while(self.angle != 0):
             self.lleg.move(up)
             self.rleg.move(up)
             move_angle(self.addr)
-    def move(self, mode):
-        self.angle = self.angle + mode          
-        self.lleg.move(up)
-        self.rleg.move(down)
-        move_angle(self.angle, self.addr)
+    def move(self, mode):  
+        if(self.angle != 0):
+            self.lleg.move(self.last, mode)
+            self.rleg.move(self.last, -mode)
+        self.angle = self.angle + mode * self.mode[self.last + 1]
+        
+        move_angle(self.angle, self.addr)   
+        if(self.angle == 45):
+            self.last = 1
+        elif(self.angle == -45):
+            self.last = 3
+        elif(self.angle == 0 & self.last == 1):
+            self.last = 2
+        elif(self.angle == 0 & self.last == -1):
+            self.last = 4
+        
+        
 
-class Leg():
+class LLeg():
+    def __init__(self):
+        self.angle = 0
+        #self.angles = list(range(-1,90))+list(range(90,-1,-1))
+        
+        self.mode = [4, -1, -1, 4, 4, -1, 4, 4, -1, -1]
+        #self.max = 
+        #self.min = 
+        self.addr = 0
+    def move(self, last, mode):
+        self.angle = self.angle + mode * self.mode[self.last + 1]
+        move_angle(self.angle, self.addr)
+        if(self.angle == 90):
+            self.last = 1
+        elif(self.angle == -5):
+            self.last = 3
+        elif(self.angle == 0 & self.last == 1):
+            self.last = 2
+        elif(self.angle == 0 & self.last == -1):
+            self.last = 4        
+    
+class RLeg():
     def __init__(self):
         self.angle = 0
         #self.angles = list(range(-1,90))+list(range(90,-1,-1))
         self.angles = [-1, 0, 90]
+        self.mode = [-1, 4, 4, -1, -1]
+        #self.max = 
+        #self.min = 
         self.addr = 0
-    def move(self, mode):
+    def move(self, last, mode):
+        self.angle = self.angle + mode * self.mode[last + 1]
+        move_angle(self.angle, self.addr)
         
-    
 
       
 
