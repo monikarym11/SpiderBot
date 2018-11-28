@@ -29,17 +29,19 @@ class SpiderMoves():
         self.x.calibrate()
         self.y.calibrate()
         self.z.calibrate()
+        print('x: {} {} {}, y: {} {} {}, z: {} {} {}'.format(self.x.angle, self.x.lleg.angle, self.x.rleg.angle,self.y.angle,self.y.lleg.angle, self.y.rleg.angle,self.z.angle,self.z.lleg.angle, self.z.rleg.angle))
             
     def move_forward(self):
         #while(True):
-        self.x.modes= [1, -1, -1, 1, 1, 1]
-        self.y.modes = [-1, -1, -1, 1, 1, -1]
-        self.z.modes = [1, -1, -1, 1, 1, 1]
+        self.x.modes= [1, -1, -1, 1, 1, 1, 0]
+        self.y.modes = [-1, -1, -1, 1, 1, -1, 0]
+        self.z.modes = [1, -1, -1, 1, 1, 1, 0]
         for i in range(1,200):
             self.x.move(1)
             self.y.move(-1)
             self.z.move(1)
-            print('x: {} {} {}, y: {} {} {}, z: {} {} {}'.format(self.x.angle, self.x.lleg.angle, self.x.rleg.angle,self.y.angle,self.y.lleg.angle, self.y.rleg.angle,self.z.angle,self.z.lleg.angle, self.z.rleg.angle))
+        print('x: {} {} {}, y: {} {} {}, z: {} {} {}'.format(self.x.angle, self.x.lleg.angle, self.x.rleg.angle,self.y.angle,self.y.lleg.angle, self.y.rleg.angle,self.z.angle,self.z.lleg.angle, self.z.rleg.angle))
+        
             
         #self.calibrate()
    # def move_round(self):
@@ -65,15 +67,33 @@ class Pair():
         self.lleg = Leg('left')
         self.rleg = Leg('right')
         
-    def calibrate(self):
-        while(self.angle != 0):
-            self.lleg.move(1)
-            self.rleg.move(1)
+    def calibrate(self):        
+        # if(self.lleg.angle <= abs(self.angle)):
+        #     self.lleg.lock = False
+        # if(self.rleg.angle <= abs(self.angle)):
+        #     self.rleg.lock = False
+        while((abs(self.angle) > self.lleg.angle and self.lleg.angle > 0) or (abs(self.angle) > self.rleg.angle and self.rleg.angle > 0)):
+                if(self.angle != 0):
+                    self.angle = self.angle + (0-self.angle)/abs(self.angle)
+                    # if(self.lleg.angle + self.rleg.angle == 0):
+                    #     self.rleg.lock = True
+                    #     self.lleg.lock = True
+        while(self.angle != 0 or self.lleg.angle != 0 or  self.rleg.angle != 0):
+            #while((self.angle > self.lleg.angle and self.lleg.angle > 0) or (self.angle > self.rleg.angle and self.rleg.angle > 0)):
+            if(self.angle != 0):
+                self.angle = self.angle + (0-self.angle)/abs(self.angle)
+            if(self.lleg.angle + self.rleg.angle == 0):
+                self.rleg.lock = True
+                self.lleg.lock = True
+            if(self.lleg.angle != 0 and self.lleg.lock):
+                self.lleg.calibrate()
+            if(self.rleg.angle != 0 and self.rleg.lock):
+                self.rleg.calibrate()
             #move_angle(self.addr)
+            #print('p: {}, l: {}, r: {}'.format(self.angle, self.lleg.angle, self.rleg.angle))
+    
     def move(self, mode):  
-        # if(self.angle != 0):
-        #     self.lleg.move(self.last, mode)
-        #     self.rleg.move(self.last, -mode)
+        
         if(self.lleg.lock):
             self.lleg.move(self.last, mode)
         if(self.rleg.lock):
@@ -107,29 +127,32 @@ class Leg():
         elif(side =='right'):
             self.mode = -1
         self.lock = True
-        self.modes = [1,-self.mode, self.mode, self.mode, -self.mode, 1]
-        #self.max = 
-        self.min = -1
+        self.modes = [1,-1, 1, 1, -1, 1]
+        #self.max = 44
+        self.min = -5
         self.addr = 0
     def move(self, last, mode):
         
-        if(last != 0 and last != 5):
-            self.angle = self.angle + self.modes[last]*mode
+        if(last != 0 and last != 5 and last !=6):
+            self.angle = self.angle + self.modes[last]*self.mode
         elif(last == 0):
             self.angle = self.angle + (mode * self.mode)
         elif(last == 5):
             self.angle = self.angle - (mode * self.mode)
+        
             #move_angle(self.angle, self.addr)
         #print last + self.angle
         #print('last: {}, side: {}, angle: {}'.format(last, self.mode, self.angle))
         if(self.angle == -5):
             self.lock = False
-
-    ## Running this program will move the servo to 0, 45, and 90 degrees with 5 second pauses in between with a 50 Hz PWM signal.
+    def calibrate(self):
+        self.angle = self.angle + (0-self.angle)/abs(self.angle)
+    
 if __name__ == "__main__":
     start = time.time()
     SMoves = SpiderMoves()
     SMoves.move_forward()
+    SMoves.calibrate()
     end = time.time()
     print(end-start)
     #servo movement testing:
