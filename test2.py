@@ -7,9 +7,9 @@ class SpiderMoves():
         #self.angles = list(range(1,90))+list(range(90,1,-1))
         self.addr = 0x40
         #self.legs = Legs()
-        self.x = Pair()
-        self.y = Pair()
-        self.z = Pair()
+        self.x = Pair([0x06, 0x0A, 0x0E], [0x08, 0x0C, 0x10])
+        self.y = Pair([0x12, 0x16m 0x1A], [0x14, 0x18, 0x1C])
+        self.z = Pair([0x1E, 0x22, 0x26], [0x20, 0x24, 0x28])
         # with SMBusWrapper(1) as bus:
         #     bus.write_byte_data(self.addr, 0, 0x20) # enable the chip
         #     time.sleep(.25)
@@ -56,16 +56,18 @@ class SpiderMoves():
 #             bus.write_word_data(self.addr, 0x08, 209+angle)
 
 class Pair():
-    def __init__(self):
+    def __init__(self, start_addr, stop_addr):
         self.angle = 0
+        self.start_addr = start_addr[0]
+        self.stop_addr = stop_addr[0]
         #self.angles = list(range(-45,45))+list(range(45,-45,-1))
         self.mode = 1
         self.modes = []
         self.last = 0
         self.prev = 0        
         self.addr = 0
-        self.lleg = Leg('left')
-        self.rleg = Leg('right')
+        self.lleg = Leg('left', start_addr[1], stop_addr[1])
+        self.rleg = Leg('right', start_addr[2], stop_addr[2])
         
     def calibrate(self):        
         # if(self.lleg.angle <= abs(self.angle)):
@@ -120,8 +122,10 @@ class Pair():
         
 
 class Leg():
-    def __init__(self, side):
-        self.angle = 0        
+    def __init__(self, side, start_addr, stop_addr):
+        self.angle = 0
+        self.start_addr = start_addr
+        self.stop_addr = stop_addr
         if(side == 'left'):
             self.mode = 1
         elif(side =='right'):
