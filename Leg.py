@@ -40,6 +40,7 @@ class Leg():
 
         if(self.angle == self.min):
             self.lock = False
+        move_angle(self.angle, self.stop_addr)
 
     def calibrate(self):
 

@@ -9,9 +9,9 @@ import time
 class SpiderMoves():
     def __init__(self):            
         
-        self.x = Pair([0x06, 0x0A, 0x0E], [0x08, 0x0C, 0x10])
-        self.y = Pair([0x12, 0x16, 0x1A], [0x14, 0x18, 0x1C])
-        self.z = Pair([0x1E, 0x22, 0x26], [0x20, 0x24, 0x28])
+        self.x = PairOfLegs([0x06, 0x0A, 0x0E], [0x08, 0x0C, 0x10])
+        self.y = PairOfLegs([0x12, 0x16, 0x1A], [0x14, 0x18, 0x1C])
+        self.z = PairOfLegs([0x1E, 0x22, 0x26], [0x20, 0x24, 0x28])
 
         self.calibrate()
         
@@ -41,7 +41,8 @@ class SpiderMoves():
         self.x.move(1)
         self.y.move(-1)
         self.z.move(1)
-        time.sleep(.3)
+        print('x: {} {} {}, y: {} {} {}, z: {} {} {}'.format(self.x.angle, self.x.lleg.angle, self.x.rleg.angle,self.y.angle,self.y.lleg.angle, self.y.rleg.angle,self.z.angle,self.z.lleg.angle, self.z.rleg.angle))
+        #time.sleep(.3)
         
     def move_backwards(self):
 

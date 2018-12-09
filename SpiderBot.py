@@ -7,10 +7,11 @@ import time
 
 if __name__ == "__main__":
     start = time.time()
+    time.sleep(5)
     SMoves = SpiderMoves()
     #for i in range(1,200):
     #   SMoves.move_forward()
-    #   time.sleep(.3)
+    #   time.sleep(.05)
     #SMoves.calibrate()
     #SMoves.move_backwards()
     #SMoves.calibrate()
