@@ -12,11 +12,6 @@ class Leg():
         self.stop_addr = stop_addr
 
         initialize(self.start_addr, self.stop_addr)
-        # with SMBusWrapper as bus:
-        #     bus.write_word_data(self.addr, self.start_addr, 0) # chl 0 start time = 0us                       
-        #     time.sleep(.25)
-        #     bus.write_word_data(self.addr, self.stop_addr, 209) # chl 0 end time = 1.0ms (0 degrees)
-        #     time.sleep(.25)
 
         if(side == 'left'):
             self.mode = 1

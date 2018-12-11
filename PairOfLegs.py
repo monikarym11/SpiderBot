@@ -21,11 +21,6 @@ class PairOfLegs():
 
         initialize(self.start_addr, self.stop_addr)
 
-        # with SMBusWrapper as bus:
-        #     bus.write_word_data(self.addr, self.start_addr, 0) # chl 0 start time = 0us                       
-        #     time.sleep(.25)
-        #     bus.write_word_data(self.addr, self.stop_addr, 209) # chl 0 end time = 1.0ms (0 degrees)
-        #     time.sleep(.25)
 
         self.lleg = Leg('left', start_addr[1], stop_addr[1])
         self.rleg = Leg('right', start_addr[2], stop_addr[2])

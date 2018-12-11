@@ -15,15 +15,8 @@ class SpiderMoves():
 
         self.calibrate()
         
-        with SMBusWrapper(1) as bus:
-            bus.write_byte_data(chip_addr, 0, 0x20) # enable the chip
-            time.sleep(.25)
-            bus.write_byte_data(chip_addr, 0, 0x10) # enable Prescale change as noted in the datasheet
-            time.sleep(.25) # delay for reset
-            bus.write_byte_data(chip_addr, 0xfe, 0x79) #changes the Prescale register value for 50 Hz, using the equation in the datasheet.
-            bus.write_byte_data(chip_addr, 0, 0x20) # enables the chip
-            time.sleep(.25)        
-        
+        bus_initialize()
+                
     def calibrate(self):
 
         self.x.calibrate()
