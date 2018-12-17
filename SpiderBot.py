@@ -9,14 +9,15 @@ if __name__ == "__main__":
     start = time.time()
     time.sleep(5)
     SMoves = SpiderMoves()
-    #for i in range(1,200):
-    #   SMoves.move_forward()
-    #   time.sleep(.05)
     #SMoves.calibrate()
+    for i in range(1,200):
+       SMoves.move_forward()
+       time.sleep(.01)
+    SMoves.calibrate()
     #SMoves.move_backwards()
     #SMoves.calibrate()
-    for i in range(1,5):
-        SMoves.turn_right()
+    #for i in range(1,5):
+    #    SMoves.turn_right()
     end = time.time()
     print(end-start)
     #servo movement testing:

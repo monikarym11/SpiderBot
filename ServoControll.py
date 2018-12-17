@@ -26,4 +26,4 @@ def initialize(start_addr, stop_addr):
 def move_angle(angle, addr):
 
     with SMBusWrapper(1) as bus:
-        bus.write_word_data(chip_addr, addr, point_zero-angle)
+        bus.write_word_data(chip_addr, addr, int(point_zero-angle))

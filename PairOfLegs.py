@@ -35,7 +35,7 @@ class PairOfLegs():
                 if(self.angle != 0):
                     self.angle = self.angle + (0-self.angle)/abs(self.angle)
                     move_angle(self.angle, self.stop_addr)
-                    time.sleep(.3)
+                    time.sleep(.01)
                     # if(self.lleg.angle + self.rleg.angle == 0):
                     #     self.rleg.lock = True
                     #     self.lleg.lock = True
@@ -51,7 +51,7 @@ class PairOfLegs():
                 self.lleg.calibrate()
             if(self.rleg.angle != 0 and self.rleg.lock):
                 self.rleg.calibrate()
-            time.sleep(.3)
+            time.sleep(.01)
             #move_angle(self.addr)
             #print('p: {}, l: {}, r: {}'.format(self.angle, self.lleg.angle, self.rleg.angle))
             self.last = 0
