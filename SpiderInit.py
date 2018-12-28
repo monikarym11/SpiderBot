@@ -1,0 +1,10 @@
+from ServoControll import *
+from PairOfLegs import IPL
+from SpiderMoves import SpiderMoves
+
+if __name__ == "__main__":
+    bus_initialize()
+    SMoves = SpiderMoves()
+    SMoves.x = IPL([0x06, 0x0A, 0x0E], [0x08, 0x0C, 0x10])
+    SMoves.y = IPL([0x12, 0x16, 0x1A], [0x14, 0x18, 0x1C])
+    SMoves.z = IPL([0x1E, 0x22, 0x26], [0x20, 0x24, 0x28])

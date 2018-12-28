@@ -2,7 +2,7 @@ from smbus2 import SMBusWrapper
 import time
 
 chip_addr = 0x40
-point_zero = 312
+point_zero = 209
 
 def bus_initialize():
     with SMBusWrapper(1) as bus:
@@ -18,8 +18,8 @@ def initialize(start_addr, stop_addr):
     with SMBusWrapper(1) as bus:
             bus.write_word_data(chip_addr, start_addr, 0) # start time = 0us                       
             time.sleep(.25)
-            bus.write_word_data(chip_addr, stop_addr, 209) # end time = 1.0ms (0 degrees)
-            time.sleep(.25)
+            #bus.write_word_data(chip_addr, stop_addr, 209) # end time = 1.0ms (0 degrees)
+            #time.sleep(.25)
             bus.write_word_data(chip_addr, stop_addr, point_zero) # end time = 1.5ms (45 degrees)
     
 
