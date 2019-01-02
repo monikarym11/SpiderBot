@@ -1,55 +1,43 @@
 from smbus2 import SMBus
 from smbus2 import SMBusWrapper
 from PairOfLegs import PairOfLegs
-from ServoControll import *
+#from ServoControll import *
 import time
-
-#chip_addr = 0x40
 
 class SpiderMoves():
     def __init__(self):            
-        #bus_initialize()
+            
         self.x = PairOfLegs([0x06, 0x0A, 0x0E], [0x08, 0x0C, 0x10])
         self.y = PairOfLegs([0x12, 0x16, 0x1A], [0x14, 0x18, 0x1C])
-        self.z = PairOfLegs([0x1E, 0x22, 0x26], [0x20, 0x24, 0x28])
-
-        #self.calibrate()
-        
-        
+        self.z = PairOfLegs([0x1E, 0x22, 0x26], [0x20, 0x24, 0x28])        
                 
     def calibrate(self):
 
         self.x.calibrate()
         self.y.calibrate()
         self.z.calibrate()
-        print('x: {} {} {}, y: {} {} {}, z: {} {} {}'.format(self.x.angle, self.x.lleg.angle, self.x.rleg.angle,self.y.angle,self.y.lleg.angle, self.y.rleg.angle,self.z.angle,self.z.lleg.angle, self.z.rleg.angle))
-        
+        print('x: {} {} {}, y: {} {} {}, z: {} {} {}'.format(self.x.angle, self.x.lleg.angle, self.x.rleg.angle,self.y.angle,self.y.lleg.angle, self.y.rleg.angle,self.z.angle,self.z.lleg.angle, self.z.rleg.angle))        
             
     def move_forward(self):
 
         self.x.modes = [1, -1, -1, 1, 1, 1, 0]
         self.y.modes = [-1, -1, -1, 1, 1, -1, 0]
         self.z.modes = [1, -1, -1, 1, 1, 1, 0]
-        
-        #for i in range(1,200):
+                
         self.x.move(1)
         self.y.move(-1)
         self.z.move(1)
         print('x: {} {} {}, y: {} {} {}, z: {} {} {}'.format(self.x.angle, self.x.lleg.angle, self.x.rleg.angle,self.y.angle,self.y.lleg.angle, self.y.rleg.angle,self.z.angle,self.z.lleg.angle, self.z.rleg.angle))
-        #time.sleep(.3)
-        
+                
     def move_backwards(self):
 
         self.x.modes = [-1, -1, -1, 1, 1, -1, 0]
         self.y.modes = [1, -1, -1, 1, 1, 1, 0]
         self.z.modes = [-1, -1, -1, 1, 1, -1, 0]
-
-        #for i in range(1,200):
+        
         self.x.move(1)
         self.y.move(-1)
         self.z.move(1)
-         
-        #self.calibrate()
    
     def turn_left(self):
         

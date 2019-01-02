@@ -1,6 +1,6 @@
 from smbus2 import SMBus
 from smbus2 import SMBusWrapper
-from ServoControll import initialize, move_angle
+#from ServoControll import initialize, move_angle
 import time
 class ILeg():
     def __init__(self, side, start_addr, stop_addr):

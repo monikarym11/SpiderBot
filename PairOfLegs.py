@@ -1,7 +1,7 @@
 from smbus2 import SMBus
 from smbus2 import SMBusWrapper
 from Leg import Leg, ILeg
-from ServoControll import initialize, move_angle
+#from ServoControll import initialize, move_angle
 import time
 
 chip_addr = 0x40
