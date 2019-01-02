@@ -19,7 +19,7 @@ class ILeg():
         self.lock = True
         self.modes = [1,-1, 1, 1, -1, 1]
         self.max = 22
-        self.min = -5
+        self.min = -10
         self.addr = 0
 
 class Leg():
@@ -45,11 +45,11 @@ class Leg():
 
     def move(self, last, mode):        
         if(last != 0 and last != 5 and last !=6):
-            self.angle = self.angle + self.modes[last]*self.mode
+            self.angle = self.angle + 2*(self.modes[last]*self.mode)
         elif(last == 0):
-            self.angle = self.angle + (mode * self.mode)
+            self.angle = self.angle + 2*(mode * self.mode)
         elif(last == 5):
-            self.angle = self.angle - (mode * self.mode)
+            self.angle = self.angle - 2*(mode * self.mode)
 
         if(self.angle == self.min):
             self.lock = False

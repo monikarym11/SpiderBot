@@ -12,8 +12,7 @@ class MyFrame(Frame):
     def showJudgments(self, event=None):
         if self.go == False:
             self.go = True
-            while(self.go == True):
-                self.showJudgmentsA()
+            self.showJudgmentsA()
         else: 
             self.keepShowing()
             

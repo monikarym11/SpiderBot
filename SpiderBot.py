@@ -25,5 +25,5 @@ if __name__ == "__main__":
     # for i in range(1,5):
     #     SMoves.move_forward()
     #time.sleep(5)
-    with SMBusWrapper(1) as bus:
-        bus.write_byte(0x00, 0x06)
+    #with SMBusWrapper(1) as bus:
+     #   bus.write_byte(0x00, 0x06)

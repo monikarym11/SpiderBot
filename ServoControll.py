@@ -27,6 +27,7 @@ def move_angle(angle, addr):
 
     with SMBusWrapper(1) as bus:
         bus.write_word_data(chip_addr, addr, int(point_zero-angle))
+        
 def reset_servos():
     with SMBusWrapper(1) as bus:
         bus.write_byte(0x00, 0x06)
