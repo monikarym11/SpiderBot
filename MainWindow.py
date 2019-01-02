@@ -14,15 +14,12 @@ class MainWindow():
     def run(self):
         root = Tk()
         self.frame = Frame(root)
-<<<<<<< HEAD
-        self.frame.pack()
-        self.InitButton = Button(self.frame, text="Init", bg="grey", width=3, command = lambda: SpiderInit())
-=======
+
         
         #self.InitButton = Button(self.frame, text="Init", bg="grey", width=3, command = lambda: init_spider())
         self.InitButton = Button(self.frame, text="Init", bg="grey", width=3)
         #self.StartButton = Button(self.frame, text="Start", bg="grey", width=3, command = lambda: start_spider())
->>>>>>> 0f91835440cdd58490b109cbf7740fd062046500
+
         self.StartButton = Button(self.frame, text="Start", bg="grey", width=3)
         self.ForwardButton = Button(self.frame, text="Forwards", bg="grey", width=3)
         self.LeftButton = Button(self.frame, text="Left", bg="grey", width=3)
@@ -36,19 +33,15 @@ class MainWindow():
         self.RightButton.grid(row=4,column=4)
         self.BackButton.grid(row=5,column=3)
         self.ResetButton.grid(row=2,column=3)
-<<<<<<< HEAD
-=======
+
         self.ForwardButton.bind("<Button-1>", self.forward_action)
         self.frame.pack()
->>>>>>> 0f91835440cdd58490b109cbf7740fd062046500
+
         #if(self.forward):
         #    SMoves.move_forward()
         root.mainloop()
         
-<<<<<<< HEAD
-    #def forward_action(self,pressed):
-        #self.forward = pressed
-=======
+
     def forward_action(self, event):
         forward = True
         
@@ -63,7 +56,7 @@ class MainWindow():
     def stop_action(self, event):
         forward = False
         print("released")
->>>>>>> 0f91835440cdd58490b109cbf7740fd062046500
+
         
     def start_spider(self):
         self.spider = SpiderMoves()
