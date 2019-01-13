@@ -45,11 +45,11 @@ class Leg():
 
     def move(self, last, mode):        
         if(last != 0 and last != 5 and last !=6):
-            self.angle = self.angle + 2*(self.modes[last]*self.mode)
+            self.angle = self.angle + 3*(self.modes[last]*self.mode)
         elif(last == 0):
-            self.angle = self.angle + 2*(mode * self.mode)
+            self.angle = self.angle + 3*(mode * self.mode)
         elif(last == 5):
-            self.angle = self.angle - 2*(mode * self.mode)
+            self.angle = self.angle - 3*(mode * self.mode)
 
         if(self.angle == self.min):
             self.lock = False

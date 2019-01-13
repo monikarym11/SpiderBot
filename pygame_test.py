@@ -19,7 +19,7 @@ vel = 5
 run = True
 
 while run:
-    pygame.time.delay(100)
+    pygame.time.delay(1)
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             reset_servos()
@@ -27,21 +27,21 @@ while run:
         if event.type == pygame.KEYUP:
             if event.key == pygame.K_UP or event.key == pygame.K_DOWN:
                 SMoves.calibrate()
-                y = point_zero
+                #y = point_zero
     keys = pygame.key.get_pressed()
     
     if keys[pygame.K_UP]:
         SMoves.move_forward()
-        y -= vel
+        # -= vel
     if keys[pygame.K_DOWN]:
         SMoves.move_backwards()
-        y += vel
+        #y += vel
 #    if keys[pygame.K_LEFT]:
 #        SMoves        
 #    if keys[pygame.K_RIGHT]:
     
-    win.fill((0,0,0))
-    pygame.draw.rect(win, (255,0,0), (x, y, width, height))
-    pygame.display.update()
+    #win.fill((0,0,0))
+    #pygame.draw.rect(win, (255,0,0), (x, y, width, height))
+    #pygame.display.update()
             
 pygame.quit()

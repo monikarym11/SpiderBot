@@ -2,7 +2,7 @@ from smbus2 import SMBusWrapper
 import time
 
 chip_addr = 0x40
-point_zero = 209
+point_zero = 280
 
 def bus_initialize():
     with SMBusWrapper(1) as bus:

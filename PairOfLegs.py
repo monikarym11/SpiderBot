@@ -34,8 +34,8 @@ class PairOfLegs():
         self.stop_addr = stop_addr[0]              
         #self.min = -44
         #self.max = 44
-        self.min = -32
-        self.max = 32
+        self.min = -64
+        self.max = 64
         self.mode = 1
         self.modes = []
         self.last = 0
@@ -85,7 +85,7 @@ class PairOfLegs():
         if(self.rleg.lock):
             self.rleg.move(self.last, mode)
 
-        self.angle = self.angle + self.modes[self.last]
+        self.angle = self.angle + 2*self.modes[self.last]
         
         move_angle(self.angle, self.stop_addr)   
         
