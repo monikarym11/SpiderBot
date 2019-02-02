@@ -4,20 +4,20 @@ from Leg import Leg, ILeg
 from ServoControll import initialize, move_angle
 import time
 
-chip_addr = 0x40
+#chip_addr = 0x40
 class IPL():
     def __init__(self, start_addr, stop_addr):
 
-        self.angle = 0
+  #      self.angle = 0
         self.start_addr = start_addr[0]
         self.stop_addr = stop_addr[0]              
         #self.min = -44
         #self.max = 44
-        self.min = -88
-        self.max = 88
-        self.mode = 1
-        self.modes = []
-        self.last = 0
+ #       self.min = -88
+ #       self.max = 88
+ #       self.mode = 1
+ #       self.modes = []
+ #       self.last = 0
 
         initialize(self.start_addr, self.stop_addr)
 
@@ -32,16 +32,11 @@ class PairOfLegs():
         self.angle = 0
         self.start_addr = start_addr[0]
         self.stop_addr = stop_addr[0]              
-        #self.min = -44
-        #self.max = 44
-        self.min = -64
-        self.max = 64
+        self.min = -84
+        self.max = 84
         self.mode = 1
         self.modes = []
         self.last = 0
-
-    #    initialize(self.start_addr, self.stop_addr)
-
 
         self.lleg = Leg('left', start_addr[1], stop_addr[1])
         self.rleg = Leg('right', start_addr[2], stop_addr[2])
@@ -56,7 +51,7 @@ class PairOfLegs():
                 if(self.angle != 0):
                     self.angle = self.angle + (0-self.angle)/abs(self.angle)
                     move_angle(self.angle, self.stop_addr)
-                    time.sleep(.01)
+                    time.sleep(.005)
                     # if(self.lleg.angle + self.rleg.angle == 0):
                     #     self.rleg.lock = True
                     #     self.lleg.lock = True
@@ -72,7 +67,7 @@ class PairOfLegs():
                 self.lleg.calibrate()
             if(self.rleg.angle != 0 and self.rleg.lock):
                 self.rleg.calibrate()
-            time.sleep(.01)
+            time.sleep(.005)
             #move_angle(self.addr)
             #print('p: {}, l: {}, r: {}'.format(self.angle, self.lleg.angle, self.rleg.angle))
             self.last = 0

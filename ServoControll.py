@@ -17,16 +17,13 @@ def bus_initialize():
 def initialize(start_addr, stop_addr):
     with SMBusWrapper(1) as bus:
             bus.write_word_data(chip_addr, start_addr, 0) # start time = 0us                       
-            time.sleep(.25)
-            #bus.write_word_data(chip_addr, stop_addr, 209) # end time = 1.0ms (0 degrees)
-            #time.sleep(.25)
+            time.sleep(.25)            
             bus.write_word_data(chip_addr, stop_addr, point_zero) # end time = 1.5ms (45 degrees)
     
-
 def move_angle(angle, addr):
 
     with SMBusWrapper(1) as bus:
-        bus.write_word_data(chip_addr, addr, int(point_zero-angle))
+        bus.write_word_data(chip_addr, addr, int(point_zero+angle))
         
 def reset_servos():
     with SMBusWrapper(1) as bus:
