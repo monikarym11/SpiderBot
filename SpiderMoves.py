@@ -24,9 +24,9 @@ class SpiderMoves():
         self.y.modes = [-1, -1, -1, 1, 1, -1, 0]
         self.z.modes = [1, -1, -1, 1, 1, 1, 0]
                 
-        self.x.move(1)
-        self.y.move(-1)
-        self.z.move(1)
+        self.x.move(1, 1)
+        self.y.move(-1, 1)
+        self.z.move(1, 1)
         
         #print('x: {} {} {}, y: {} {} {}, z: {} {} {}'.format(self.x.angle, self.x.lleg.angle, self.x.rleg.angle,self.y.angle,self.y.lleg.angle, self.y.rleg.angle,self.z.angle,self.z.lleg.angle, self.z.rleg.angle))
                 
@@ -36,11 +36,11 @@ class SpiderMoves():
         self.y.modes = [1, -1, -1, 1, 1, 1, 0]
         self.z.modes = [-1, -1, -1, 1, 1, -1, 0]
         
-        self.x.move(1)
-        self.y.move(-1)
-        self.z.move(1)
+        self.x.move(1, -1)
+        self.y.move(-1, -1)
+        self.z.move(1, -1)
        
-        print('x: {} {} {}, y: {} {} {}, z: {} {} {}'.format(self.x.angle, self.x.lleg.angle, self.x.rleg.angle,self.y.angle,self.y.lleg.angle, self.y.rleg.angle,self.z.angle,self.z.lleg.angle, self.z.rleg.angle))
+        #print('x: {} {} {}, y: {} {} {}, z: {} {} {}'.format(self.x.angle, self.x.lleg.angle, self.x.rleg.angle,self.y.angle,self.y.lleg.angle, self.y.rleg.angle,self.z.angle,self.z.lleg.angle, self.z.rleg.angle))
    
     def turn_left(self):
         

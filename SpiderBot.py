@@ -23,7 +23,7 @@ run = True
 
 while run:
     #pygame.time.delay(1)
-    time.sleep(.002)
+    time.sleep(.0001)
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             reset_servos()
