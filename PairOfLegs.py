@@ -10,7 +10,8 @@ class IPL():
 
   #      self.angle = 0
         self.start_addr = start_addr[0]
-        self.stop_addr = stop_addr[0]              
+        self.stop_addr = stop_addr[0]
+        self.point_zero =  280
         #self.min = -44
         #self.max = 44
  #       self.min = -88
@@ -19,7 +20,7 @@ class IPL():
  #       self.modes = []
  #       self.last = 0
 
-        initialize(self.start_addr, self.stop_addr)
+        initialize(self.point_zero, self.start_addr, self.stop_addr)
 
 
         self.lleg = ILeg('left', start_addr[1], stop_addr[1])
@@ -31,7 +32,8 @@ class PairOfLegs():
 
         self.angle = 0
         self.start_addr = start_addr[0]
-        self.stop_addr = stop_addr[0]              
+        self.stop_addr = stop_addr[0]
+        self.point_zero = 280
         self.min = -64
         self.max = 64
         self.mode = 1
@@ -50,7 +52,7 @@ class PairOfLegs():
         while((abs(self.angle) > self.lleg.angle and self.lleg.angle > 0) or (abs(self.angle) > self.rleg.angle and self.rleg.angle > 0)):
                 if(self.angle != 0):
                     self.angle = self.angle + (0-self.angle)/abs(self.angle)
-                    move_angle(self.angle, self.stop_addr)
+                    move_angle(self.point_zero, self.angle, self.stop_addr)
                     time.sleep(.005)
                     # if(self.lleg.angle + self.rleg.angle == 0):
                     #     self.rleg.lock = True
@@ -82,7 +84,7 @@ class PairOfLegs():
 
         self.angle = self.angle + 2*self.modes[self.last]
         
-        move_angle(way*self.angle, self.stop_addr)   
+        move_angle(self.point_zero, way*self.angle, self.stop_addr)   
         
         if(self.angle >= self.max):            
             self.last = 1            
@@ -105,11 +107,11 @@ class PairOfLegs():
     def move_up(self, mode):
         
         self.lleg.move(self.last, self.lleg.mode)
-        move_angle(self.lleg.angle, self.lleg.stop_addr)
+        move_angle(self.lleg.point_zero, self.lleg.angle, self.lleg.stop_addr)
         self.rleg.move(self.last, self.rleg.mode)
-        move_angle(self.rleg.angle, self.rleg.stop_addr)
+        move_angle(self.rleg.point_zero, self.rleg.angle, self.rleg.stop_addr)
         self.angle = self.angle + self.modes[self.last]
-        move_angle(self.angle, self.stop_addr)
+        move_angle(self.point_zero, self.angle, self.stop_addr)
         time.sleep(.3)
         if(abs(self.angle) == 22 and self.last == 0):
             self.last = 5

@@ -39,5 +39,11 @@ while run:
  
     if keys[pygame.K_DOWN]:
         SMoves.move_backwards()
+    if keys[pygame.K_d]:
+        SMoves.recalibrate(-1)
+        time.sleep(.5)
+    if keys[pygame.K_u]:
+        SMoves.recalibrate(1)
+        time.sleep(.5)
  
 pygame.quit()
